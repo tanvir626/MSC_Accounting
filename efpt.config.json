@@ -1,0 +1,173 @@
+﻿{
+   "CodeGenerationMode": 5,
+   "ContextClassName": "AccountsDBContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Accounting_Module",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[ACC_Account]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ACC_CostCenter]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ACC_FY]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ACC_RptTbl_ReceivePayments]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ACC_TempVoucher]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ACC_Voucher]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ACC_VoucherType]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[AC_GetCashNBankBookData]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[AC_GetOpeningBalance]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[AC_GetTrialBalance]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_Create_Account]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_Create_Voucher]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_Edit_Account]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_Edit_Voucher]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GenerateAccountCode]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GenerateBalanceSheet]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GenerateVoucherID]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GET_AccountLocation]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GET_AccountTree]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GET_AccountTreeByCode]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetAccountList]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetAccountScheduleReport]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetBalanceSheetLevelWiseData]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetIncomeStatement]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetSubsidiaryLedgerData]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetTempVoucherList]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetUsableAccountList]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetVoucherByID]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetVoucherDetails]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_GetVoucherInfoList]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_Rpt_ReceivePayments_Insert]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ACC_Rpt_ReceivePayments]",
+         "ObjectType": 1
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}
