@@ -2,6 +2,8 @@
 using Accounting_Module.Models;
 using Accounting_Module.Repository;
 using Microsoft.AspNetCore.DataProtection.Repositories;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using System.Text;
 
 namespace Accounting_Module.Service
 {
@@ -24,5 +26,17 @@ namespace Accounting_Module.Service
             }).Where(x => x.IsParent == "Y" || x.IsMaster == "Y").ToList();
             return Act_Accounts;
         }
+
+        public string GetParentName(int accid)
+        {
+            return repo.Get_Active_Account_List().Where(x => x.AccountID == accid).Select(x => x.AccountName).FirstOrDefault()??"Something Went Wrong";             
+        }
+
+        public string GetAccountCode(int parentID)
+        {
+            return repo.GenerateNewAccountCode(parentID);
+
+        }
+
     }
 }

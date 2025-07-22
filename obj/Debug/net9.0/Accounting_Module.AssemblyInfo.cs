@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Accounting_Module")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8157c5531da821ab5d69a8b71fea2c137253edd8")]
 [assembly: System.Reflection.AssemblyProductAttribute("Accounting_Module")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Accounting_Module")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

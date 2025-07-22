@@ -34,4 +34,6 @@ public partial class AccAccount
     public int? EditUserId { get; set; }
 
     public DateTime? EditDate { get; set; }
+    public int AccountID { get; set; }
+    public int ParentID { get; set; }
 }

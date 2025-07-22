@@ -296,3 +296,4 @@ C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\refint\Accounting
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\Accounting_Module.pdb
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\Accounting_Module.genruntimeconfig.cache
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\ref\Accounting_Module.dll
+C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\Accounting_Module.sourcelink.json

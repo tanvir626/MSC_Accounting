@@ -1,13 +1,710 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-@* @model IEnumerable<Model.Entities.ACC_Account> *@
-@*@model Model.Entities.ACC_AccountList*@
+﻿@model IEnumerable<Accounting_Module.Models.AccAccount>
 
 @{
     ViewBag.Title = "Accounts List";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h1>Hi</h1>
+
+<style type="text/css">
+    A:hover {
+        /*COLOR: blue !important;*/
+        TEXT-DECORATION: none;
+        font-weight: bold;
+        /*background-color: #C5E6FD !important;*/
+    }
+
+    Deletebutton {
+    }
+
+    .Deletebutton:hover {
+        TEXT-DECORATION: none;
+        font-weight: bold;
+    }
+
+    .chosen-container {
+        width: 100% !important;
+    }
+
+    ul, #myUL {
+        list-style-type: none;
+    }
+
+    #myUL {
+        margin: 0;
+        padding: 0;
+    }
+
+    .caret {
+        cursor: pointer;
+        -webkit-user-select: none; /* Safari 3.1+ */
+        -moz-user-select: none; /* Firefox 2+ */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+    }
+
+        .caret::before {
+            content: "\25B6";
+            color: #776BBE;
+            display: inline-block;
+            margin-right: 6px;
+        }
+
+    .caret-down::before {
+        -ms-transform: rotate(90deg); /* IE 9 */
+        -webkit-transform: rotate(90deg); /* Safari */
+        transform: rotate(90deg);
+    }
+
+    .nested {
+        display: none;
+    }
+
+    .active {
+        display: block;
+    }
+</style>
+
+<div class="content-wrapper" style="font-size:13px;">
+
+    <section class="content-header">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-body" style="font-size:15px;">
+
+                            <ul id="myUL">
+
+                                <li>
+                                    <a href="../Reports/AccReports/AccReportViewer.aspx?reportType=List" target="_blank" class="btn btn-outline-success">
+                                        <i class="fas fa-print"></i>&nbsp;Print Chart of Accounts
+                                    </a><hr />
+                                </li>
+
+                                @{
+                                    foreach (var firstItem in (Model.Where(x => x.IsMaster == "Y").GroupBy(Obj => new { Obj.AccountName }).Distinct().OrderBy(x => x.FirstOrDefault().AccountID).ToList()))
+                                    {
+                                        <li>
+                                            <span class="caret" style="width:250px; text-align:left;">
+                                                @*<i class="fas fa-plus-alt"></i>*@
+                                                <b>@firstItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @firstItem.FirstOrDefault().AccountName</b>
+                                            </span>
+                                            <br />
+
+                                            <ul class="nested">
+
+                                                @if (firstItem.FirstOrDefault().IsParent == "Y")
+                                                {
+                                                    <li>
+
+                                                        <a href="#" style="margin-left: 20px; color: green;" onclick="showAdd(@firstItem.FirstOrDefault().AccountID);">
+                                                            <i class="fas fa-plus" style="color: green;"></i>&nbsp;
+                                                            Add Sub Account
+                                                        </a>
+                                                    </li>
+                                                }
+
+                                                @foreach (var secondItem in (Model.Where(s => s.ParentID == firstItem.FirstOrDefault().AccountID).GroupBy(x => x.AccountName).OrderBy(Obj => Obj.FirstOrDefault().AccountCode).Distinct().ToList()))
+                                                {
+                                                    <li>
+                                                        @{
+                                                            var data = Model.Where(s => s.ParentID == firstItem.FirstOrDefault().AccountID).GroupBy(x => x.AccountName).OrderBy(Obj => Obj.FirstOrDefault().AccountCode).Distinct().ToList();
+                                                            if (data.Count > 0)
+                                                            {
+                                                                <span class="caret" style="margin-left:60px;">
+                                                                    <b>
+                                                                        @secondItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @secondItem.FirstOrDefault().AccountName
+                                                                        &nbsp;&nbsp;<a href="#" onclick="return showEdit(@secondItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                        &nbsp;&nbsp;<a href="#" onclick="return deleteData(@secondItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                    </b>
+                                                                </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span style="margin-left:60px;">
+                                                                    <b>@secondItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @secondItem.FirstOrDefault().AccountName</b>
+                                                                    &nbsp;&nbsp;<a href="#" onclick="return showEdit(@secondItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                    &nbsp;&nbsp;<a href="#" onclick="return deleteData(@secondItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                </span>
+                                                            }
+                                                        }
+
+                                                        <ul class="nested">
+
+                                                            @if (secondItem.FirstOrDefault().IsParent == "Y")
+                                                            {
+                                                                <li>
+                                                                    <a href="#" style="margin-left: 60px; color: green;" onclick="return showAdd(@secondItem.FirstOrDefault().AccountID);">
+                                                                        <i class="fas fa-plus" style="color: green;"></i>&nbsp;
+                                                                        Add Sub Account
+                                                                    </a>
+                                                                </li>
+                                                            }
+
+                                                            @foreach (var thirdItem in (Model.Where(s => s.ParentID == secondItem.FirstOrDefault().AccountID).GroupBy(x => x.AccountName).OrderBy(Obj => Obj.FirstOrDefault().AccountCode).Distinct().ToList()))
+                                                            {
+                                                                <li>
+
+                                                                    @if (thirdItem.FirstOrDefault().IsParent == "Y")
+                                                                    {
+                                                                        <span class="caret" style="margin-left:100px;">
+                                                                            <b>@thirdItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @thirdItem.FirstOrDefault().AccountName</b>
+                                                                            &nbsp;&nbsp;<a href="#" onclick="return showEdit(@thirdItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                            &nbsp;&nbsp;<a href="#" onclick="return deleteData(@thirdItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                        </span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span style="margin-left:100px;">
+                                                                            <b>@thirdItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @thirdItem.FirstOrDefault().AccountName</b>
+                                                                            &nbsp;&nbsp;<a href="#" onclick="return showEdit(@thirdItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                            &nbsp;&nbsp;<a href="#" onclick="return deleteData(@thirdItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                        </span>
+                                                                    }
+
+                                                                    <ul class="nested">
+
+                                                                        @if (thirdItem.FirstOrDefault().IsParent == "Y")
+                                                                        {
+                                                                            <li>
+                                                                                <a href="#" style="margin-left: 120px; color: green;" onclick="return showAdd(@thirdItem.FirstOrDefault().AccountID);">
+                                                                                    <i class="fas fa-plus" style="color: green;"></i>&nbsp;
+                                                                                    Add Sub Account
+                                                                                </a>
+                                                                            </li>
+                                                                        }
+
+                                                                        @foreach (var fourthItem in (Model.Where(s => s.ParentID == thirdItem.FirstOrDefault().AccountID).GroupBy(x => x.AccountName).OrderBy(Obj => Obj.FirstOrDefault().AccountCode).Distinct().ToList()))
+                                                                        {
+                                                                            <li>
+
+                                                                                @if (fourthItem.FirstOrDefault().IsParent == "Y")
+                                                                                {
+                                                                                    <span class="caret" style="margin-left: 120px;">
+                                                                                        <b>@fourthItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @fourthItem.FirstOrDefault().AccountName</b>
+                                                                                        &nbsp;&nbsp;<a href="#" onclick="return showEdit(@fourthItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                                        &nbsp;&nbsp;<a href="#" onclick="return deleteData(@fourthItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                                    </span>
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    <span style="margin-left: 120px;">
+                                                                                        <b>@fourthItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @fourthItem.FirstOrDefault().AccountName</b>
+                                                                                        &nbsp;&nbsp;<a href="#" onclick="return showEdit(@fourthItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                                        &nbsp;&nbsp;<a href="#" onclick="return deleteData(@fourthItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                                    </span>
+                                                                                }
+
+                                                                                <ul class="nested">
+
+                                                                                    @if (fourthItem.FirstOrDefault().IsParent == "Y")
+                                                                                    {
+                                                                                        <li>
+                                                                                            <a href="#" style="margin-left: 160px; color: green;" onclick="return showAdd(@fourthItem.FirstOrDefault().AccountID);">
+                                                                                                <i class="fas fa-plus" style="color: green;"></i>&nbsp;
+                                                                                                Add Sub Account
+                                                                                            </a>
+                                                                                        </li>
+                                                                                    }
+
+                                                                                    @foreach (var fifthItem in (Model.Where(s => s.ParentID == fourthItem.FirstOrDefault().AccountID).GroupBy(x => x.AccountName).OrderBy(Obj => Obj.FirstOrDefault().AccountCode).Distinct().ToList()))
+                                                                                    {
+                                                                                        <li>
+
+                                                                                            @if (fifthItem.FirstOrDefault().IsParent == "Y")
+                                                                                            {
+                                                                                                <span class="caret" style="margin-left: 160px;">
+                                                                                                    <b>@fifthItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @fifthItem.FirstOrDefault().AccountName</b>
+                                                                                                    &nbsp;&nbsp;<a href="#" onclick="return showEdit(@fifthItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                                                    &nbsp;&nbsp;<a href="#" onclick="return deleteData(@fifthItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                                                </span>
+                                                                                            }
+                                                                                            else
+                                                                                            {
+                                                                                                <span style="margin-left: 160px;">
+                                                                                                    <b>@fifthItem.FirstOrDefault().AccountCode &nbsp;&nbsp; @fifthItem.FirstOrDefault().AccountName</b>
+                                                                                                    &nbsp;&nbsp;<a href="#" onclick="return showEdit(@fifthItem.FirstOrDefault().AccountID);"><i class="fas fa-edit" style="color:green;"></i></a>
+                                                                                                    &nbsp;&nbsp;<a href="#" onclick="return deleteData(@fifthItem.FirstOrDefault().AccountID);"><i class="fas fa-trash" style="color:red;"></i></a>
+                                                                                                </span>
+                                                                                            }
+
+                                                                                        </li>
+
+                                                                                    }
+
+
+                                                                                </ul>
+
+                                                                            </li>
+
+                                                                        }
+
+                                                                    </ul>
+
+                                                                </li>
+
+                                                            }
+
+
+                                                        </ul>
+
+                                                    </li>
+
+                                                }
+
+                                            </ul>
+
+                                        </li>
+                                    }
+                                }
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<div class="modal fade" id="myModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel" style="float:left;">Add/Edit Accounts</h4>
+                <a href="#" class="close" onclick="return $('#myModal').modal('hide');" style="float:right;">&times;</a>
+            </div>
+            <div class="modal-body">
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <label for="EmployeeId">Account No.</label>
+                            <input type="text" class="form-control" id="txtID" placeholder="Account No." readonly />
+                        </div>
+
+                        <div class="col-sm-9">
+                            <label for="EmployeeId">Account Name <font style="font-weight:bold; color:red;">*</font></label>
+                            <input type="text" class="form-control" id="txtName" placeholder="Account Name" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <label for="EmployeeId">Code</label>
+                            <input type="text" class="form-control" id="txtCode" />
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="EmployeeId">Opening Balance</label>
+                            <input type="text" class="form-control" id="txtOpening" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+
+                    <div class="row">
+
+                        <div class="col-sm-6">
+                            <label for="EmployeeId">Parent Account <font style="font-weight:bold; color:red;">*</font></label>
+                            <input type="text" id="ddlParent" hidden />
+                            <input type="text" class="form-control" id="parentName" readonly />
+                        </div>
+
+                        <div class="col-sm-6">
+                            <label for="EmployeeId">Label</label>
+                            <input type="text" class="form-control" id="txtLabel" readonly />
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+                    <div class="row">
+
+                        <div class="col-sm-3">
+                            <label for="EmployeeId">Master(Y/N)</label><br />
+                            <input type="checkbox" class="mdi-checkbox-marked-circle-outline" id="chkMaster" />
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="EmployeeId">Parent(Y/N)</label><br />
+                            <input type="checkbox" class="mdi-checkbox-marked-circle-outline" id="chkParent" />
+                        </div>
+
+                        <div class="col-sm-3">
+                            <label for="EmployeeId">Status(Y/N)</label><br />
+                            <input type="checkbox" class="mdi-checkbox-marked-circle-outline" id="chkStatus" checked />
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn px-4 btn-outline-success mb-1" id="btnAdd" onclick="return saveData();"><i class="fas fa-save"></i> Save</button>
+                <button type="button" class="btn px-4 btn-outline-success mb-1" id="btnUpdate" style="display:none;" onclick="return updateData();"><i class="fas fa-edit"></i> Update</button>
+                <button type="button" class="btn px-4 btn-outline-danger mb-1" id="btnReset" onclick="return clearWindow();"><i class="fas fa-sync-alt"></i> Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    var toggler = document.getElementsByClassName("caret");
+    var i;
+    for (i = 0; i < toggler.length; i++) {
+        toggler[i].addEventListener("click", function () {
+            this.parentElement.querySelector(".nested").classList.toggle("active");
+            this.classList.toggle("caret-down");
+        });
+    }
+    function addTextBox() {
+        console.log("addTextBox called");
+        var html = '<div class="row" style="margin-top:10px;">';
+        html += '<div class="col-sm-5">';
+        html += '<input type="text" class="form-control" id="txtInput" style="width: 100%;" />';
+        html += '</div><div class="col-sm-1">';
+        html += '<a href="#"><i class="fas fa-times" style="color: red;"></i>Del</a>';
+        html += '</div></div>';
+
+        document.getElementById("textArea").innerHTML = html;
+    }
+    function clearTextArea() {
+        var html = '';
+        document.getElementById("textArea").innerHTML = html;
+    }
+    function validateForm() {
+        if ($('#txtName').val() == '') {
+            toastr.error('Account name is required.');
+            return false;
+        }
+        else if ($('#txtOpening').val() == '') {
+            toastr.error('Opening balance is required.');
+            return false;
+        }
+        //else if ($('#txtLabel').val() == '') {
+        //    toastr.error('Label is required.');
+        //    return false;
+        //}
+        else {
+            return true;
+        }
+    }
+    function getParentAccountList()
+    {
+          
+        $.get("/Accounts/GetParentAccountList", function (data) {
+            console.log(data);
+            $("#ddlParent").empty();
+            $("#ddlParent").append('<option value="0">Select<option>');
+            $("#ddlParent").trigger('chosen:updated');
+            $.each(data, function (index, row) {
+                $("#ddlParent").append("<option value='" + row.AccountID + "'>" + row.AccountName + "</option>")
+                $("#ddlParent").trigger('chosen:updated');
+            });
+        });
+    }
+    function saveData() {
+        var isValid = validateForm();
+        if (isValid == true) {
+
+            var isMaster = 'N';
+            var isParent = 'N';
+            var isActive = 'N';
+
+            var checkMaster = document.getElementById('chkMaster');
+            var checkParent = document.getElementById('chkParent');
+            var checkStatus = document.getElementById('chkStatus');
+
+            if (checkMaster.checked == true) { isMaster = 'Y'; }
+            if (checkParent.checked == true) { isParent = 'Y'; }
+            if (checkStatus.checked == true) { isActive = 'Y'; }
+
+            var dataObj = {
+                AccountName: $('#txtName').val(),
+                AccountCode: $('#txtCode').val(),
+                //Label: $('#txtLabel').val(),
+                IsMaster: isMaster,
+                IsParent: isParent,
+                ParentID: $('#ddlParent').val(),
+                OpeningBalance: $('#txtOpening').val(),
+                Status: isActive
+            };
+            $.ajax({
+                url: "/Accounts/CreateAccount",
+                data: JSON.stringify(dataObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == true)
+                    {
+                        $('#btnUpdate').hide();
+                        $('#btnAdd').show();
+                        $('#txtID').val('');
+                        $('#txtName').val('');
+                        $('#txtOpening').val('0');
+
+                        getAccountCode();
+                        toastr.success('Account created successfully.');
+                        $('#myModal').modal('hide');
+                        //location.reload();
+                    }
+                    else if (result == "Code Exist") {
+                        toastr.error('Account code is already exists.');
+                    }
+                    else {
+                        toastr.error('Failed to create account.');
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+    function updateData()
+    {
+        var isValid = validateForm();
+        if (isValid == true) {
+
+            var isMaster = 'N';
+            var isParent = 'N';
+            var isActive = 'N';
+
+            var checkMaster = document.getElementById('chkMaster');
+            var checkParent = document.getElementById('chkParent');
+            var checkStatus = document.getElementById('chkStatus');
+
+            if (checkMaster.checked == true) { isMaster = 'Y'; }
+            if (checkParent.checked == true) { isParent = 'Y'; }
+            if (checkStatus.checked == true) { isActive = 'Y'; }
+
+            var dataObj = {
+                AccountID: $('#txtID').val(),
+                AccountName: $('#txtName').val(),
+                AccountCode: $('#txtCode').val(),
+                IsMaster: isMaster,
+                IsParent: isParent,
+                ParentID: $('#ddlParent').val(),
+                OpeningBalance: $('#txtOpening').val(),
+                Status: isActive
+            };
+            $.ajax({
+                url: "/Accounts/UpdateAccount",
+                data: JSON.stringify(dataObj),
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == true) {
+                        toastr.success('Account updated successfully.');
+                        $('#myModal').modal('hide');
+                    }
+                    else if (result == "Code Exist") {
+                        toastr.error('Account code is already exists.');
+                    }
+                    else {
+                        toastr.error('Failed to create account.');
+                    }
+                },
+                error: function (errormessage) {
+                    alert(errormessage.responseText);
+                }
+            });
+        }
+    }
+    function showModal(ID)
+    {
+        clearWindow();
+        $('#ddlParent').val(ID).trigger('chosen:updated');
+
+        $('#myModal').modal();
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+    }
+    function showData(ID)
+    {
+        clearWindow();
+        $.ajax({
+            url: "/Accounts/GetAccountByNo/?accNo=" + ID,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result)
+            {
+                $('#myModal').modal('show');
+                $('#btnUpdate').show();
+                $('#btnAdd').hide();
+
+                $('#txtID').val(result.AccountID);
+                $('#txtName').val(result.AccountName);
+                $('#txtCode').val(result.AccountCode);
+                $('#ddlParent').val(result.ParentID).trigger('chosen:updated');
+                $('#txtOpening').val(result.OpeningBalance);
+
+                var isMaster = result.IsMaster;
+                var isParent = result.IsParent;
+                var isActive = result.Status;
+
+                var checkMaster = document.getElementById('chkMaster');
+                var checkParent = document.getElementById('chkParent');
+                var checkStatus = document.getElementById('chkStatus');
+
+                if (isMaster == 'Y') { checkMaster.checked = true; }
+                if (isParent == 'Y') { checkParent.checked = true; }
+                if (isActive == 'Y') { checkStatus.checked == true; }
+            }
+        });
+    }
+    function getParentName() {
+        var parentID = $('#ddlParent').val();
+        $.ajax({
+            url: "/Home/GetParentName/?accID=" + parentID,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#parentName').val(result);
+            }
+        });
+    }
+    function getAccountCode() {
+        var parentID = $('#ddlParent').val();
+        $.ajax({
+            url: "/Home/getAccountCode/?parentID=" + parentID,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $('#txtCode').val(result);
+            }
+        });
+    }
+    function deleteData(ID) {
+        if (confirm('Are you want to delete?') == true) {
+            $.ajax
+                (
+                    {
+                        url: "/Accounts/DeleteAccount/?accNo=" + ID,
+                        type: "GET",
+                        contentType: "application/json;charset=utf-8",
+                        dataType: "json",
+                        success: function (result) {
+                            if (result == "Voucher Exists")
+                            {
+                                toastr.error('Failed to delete. Voucher exists with this account.');
+                            }
+                            else if (result == false) {
+                                toastr.error('Failed to delete.');
+                            }
+                            else
+                            {
+                                location.reload();
+                            }
+                        }
+                    }
+                );
+        }
+    }
+    function clearWindow() {
+        getParentAccountList();
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+        $('#txtID').val('');
+        $('#txtName').val('');
+
+        var checkMaster = document.getElementById('chkMaster');
+        var checkParent = document.getElementById('chkParent');
+        var checkStatus = document.getElementById('chkStatus');
+
+        checkMaster.checked == false;
+        checkParent.checked == false;
+        checkStatus.checked == true;
+    }
+    function showAdd(ID)
+    {
+        //Input Fields
+        $('#myModal').modal('show');
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+        $('#btnUpdate').hide();
+        $('#btnAdd').show();
+        $('#txtID').val('');
+        $('#txtName').val('');
+        $('#txtOpening').val('0');
+        $('#ddlParent').val(ID);
+
+        //Function
+        getParentName();
+        getAccountCode();
+    }
+    function showEdit(ID)
+    {
+        //getParentAccountList();
+        $('#btnUpdate').show();
+        $('#btnAdd').hide();
+
+        getAccountDetail(ID);
+
+        $('#myModal').modal();
+    }
+    function getAccountDetail(ID) {
+    
+        $.ajax({
+            url: "/Accounts/GetAccountByNo/?accNo=" + ID,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                getParentAccountList();
+
+                $('#txtID').val(result.AccountID);
+                $('#txtName').val(result.AccountName);
+                $('#txtOpening').val(result.OpeningBalance);
+                $('#txtLabel').val(result.Label);
+                $('#txtCode').val(result.AccountCode);
+
+                $('#ddlParent').val(result.ParentID);
+
+                getParentName();
+
+                var isMaster = result.IsMaster;
+                var isParent = result.IsParent;
+                var isActive = result.Status;
+
+                var checkMaster = document.getElementById('chkMaster');
+                var checkParent = document.getElementById('chkParent');
+                var checkStatus = document.getElementById('chkStatus');
+
+                checkMaster.checked = false;
+                checkParent.checked = false;
+                checkStatus.checked = false;
+
+                if (isMaster == 'Y') { checkMaster.checked = true; }
+                if (isParent == 'Y') { checkParent.checked = true; }
+                if (isActive == 'Y') { checkStatus.checked = true; }
+            }
+        });
+    }
+</script>
+
+
+
