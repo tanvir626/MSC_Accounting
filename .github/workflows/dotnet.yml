@@ -8,8 +8,7 @@ on:
     branches: [ main ]
 
 # ✅ Add this block to satisfy CodeQL security scan:
-permissions:
-  contents: read
+
 
 jobs:
   build:
