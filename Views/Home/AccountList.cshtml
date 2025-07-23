@@ -399,10 +399,7 @@
             toastr.error('Opening balance is required.');
             return false;
         }
-        //else if ($('#txtLabel').val() == '') {
-        //    toastr.error('Label is required.');
-        //    return false;
-        //}
+
         else {
             return true;
         }
@@ -424,7 +421,6 @@
     function saveData() {
         var isValid = validateForm();
         if (isValid == true) {
-
             var isMaster = 'N';
             var isParent = 'N';
             var isActive = 'N';
@@ -440,15 +436,16 @@
             var dataObj = {
                 AccountName: $('#txtName').val(),
                 AccountCode: $('#txtCode').val(),
-                //Label: $('#txtLabel').val(),
                 IsMaster: isMaster,
                 IsParent: isParent,
                 ParentID: $('#ddlParent').val(),
                 OpeningBalance: $('#txtOpening').val(),
-                Status: isActive
+                Status: isActive,
+
             };
+        
             $.ajax({
-                url: "/Accounts/CreateAccount",
+               url: "/Home/CreateAccount",
                 data: JSON.stringify(dataObj),
                 type: "POST",
                 contentType: "application/json;charset=utf-8",
@@ -475,6 +472,7 @@
                     }
                 },
                 error: function (errormessage) {
+                    console.log(errormessage.responseText);
                     alert(errormessage.responseText);
                 }
             });

@@ -271,11 +271,6 @@ C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\bhlaeq
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\lepjbqjwut-47otxtyo56.gz
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\piip8mfa4z-4v8eqarkd7.gz
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\r9u6v0fxu2-356vix0kms.gz
-C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\g40h2hyelb-83jwlth58m.gz
-C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\378mddo7a5-mrlpezrjn3.gz
-C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\cncwyj7jgq-lzl9nlhx6b.gz
-C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\1dulgz51x4-ag7o75518u.gz
-C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\ehxomm4se8-x0q3zqp4vz.gz
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\7z0g42csw0-0i3buxo5is.gz
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\hmeziismcr-o1o13a6vjx.gz
 C:\Users\testw\Desktop\Account\MSC_Accounting\obj\Debug\net9.0\compressed\i0xmwdlkrx-ttgo8qnofa.gz

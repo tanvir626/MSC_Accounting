@@ -2,13 +2,13 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using System.Data;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 namespace Accounting_Module.Repository
 {
-    public class AccountRepository(IConfiguration con):IAccountRepository
+    public class Account_Repository_Out(IConfiguration con):IAccount_Repository_Out
     {
         private readonly string? con = con.GetConnectionString("DapperString") ?? "Something Went Wrong";
-       
+
 
         public List<AccAccount> Get_AccountList()
         {
@@ -21,7 +21,7 @@ namespace Accounting_Module.Repository
                     con_obj.Open();
 
                     var parameters = new DynamicParameters();
-                    parameters.Add("@TableName", "ACC_Account" );
+                    parameters.Add("@TableName", "ACC_Account");
 
                     AccountList = [
                         ..con_obj.Query<AccAccount>(
@@ -35,9 +35,9 @@ namespace Accounting_Module.Repository
                 {
                     Console.WriteLine(ex.ToString());
                 }
-                finally 
-                { 
-                con_obj.Close();
+                finally
+                {
+                    con_obj.Close();
                 }
             }
             return AccountList;
@@ -80,7 +80,7 @@ namespace Accounting_Module.Repository
 
         public string GenerateNewAccountCode(int parentID)
         {
-            string? generatedCode=null;
+            string? generatedCode = null;
             using (var con_obj = new SqlConnection(con))
             {
                 try
@@ -103,8 +103,7 @@ namespace Accounting_Module.Repository
                     Console.WriteLine("Error generating account code: " + ex);
                 }
             }
-            return generatedCode??"somthing Went Wrong";
+            return generatedCode ?? "somthing Went Wrong";
         }
-
     }
 }

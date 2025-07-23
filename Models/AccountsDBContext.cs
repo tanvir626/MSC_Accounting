@@ -31,11 +31,11 @@ public partial class AccountsDBContext : DbContext
     {
         modelBuilder.Entity<AccAccount>(entity =>
         {
-            entity.HasKey(e => e.AccountId);
+            entity.HasKey(e => e.AccountID);
 
             entity.ToTable("ACC_Account");
 
-            entity.Property(e => e.AccountId).HasColumnName("AccountID");
+            entity.Property(e => e.AccountID).HasColumnName("AccountID");
             entity.Property(e => e.AccountName)
                 .IsRequired()
                 .HasMaxLength(50);
@@ -51,7 +51,7 @@ public partial class AccountsDBContext : DbContext
                 .HasMaxLength(1)
                 .IsFixedLength();
             entity.Property(e => e.OpeningBalance).HasColumnType("decimal(8, 2)");
-            entity.Property(e => e.ParentId).HasColumnName("ParentID");
+            entity.Property(e => e.ParentID).HasColumnName("ParentID");
             entity.Property(e => e.Status)
                 .IsRequired()
                 .HasMaxLength(1)

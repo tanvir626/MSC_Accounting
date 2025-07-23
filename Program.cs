@@ -6,8 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IAccountsInterface, AccountService>();
-builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+builder.Services.AddScoped<IAccount_Crud_Out, SAccounts_Crud_Out>();
+builder.Services.AddScoped<IAccount_Repository_Out, Account_Repository_Out>();
+
+
+builder.Services.AddScoped<IAccounts_Crud_In, SAccounts_Crud_In>();
+builder.Services.AddScoped<IAccount_Repository_In, Account_Repository_In>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

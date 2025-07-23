@@ -2,12 +2,17 @@
 #nullable disable
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Accounting_Module.Models;
 
 public partial class AccAccount
+
 {
-    public int AccountId { get; set; }
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int AccountID { get; set; }
 
     public string AccountName { get; set; }
 
@@ -21,7 +26,7 @@ public partial class AccAccount
 
     public decimal? OpeningBalance { get; set; }
 
-    public int? ParentId { get; set; }
+    public int? ParentID { get; set; }
 
     public string Status { get; set; }
 
@@ -29,11 +34,9 @@ public partial class AccAccount
 
     public int CreateUserId { get; set; }
 
-    public DateTime CreateDate { get; set; }
+    public DateTime CreateDate { get; set; }= DateTime.Now;
 
     public int? EditUserId { get; set; }
 
-    public DateTime? EditDate { get; set; }
-    public int AccountID { get; set; }
-    public int ParentID { get; set; }
+    public DateTime? EditDate { get; set; } = DateTime.Now;
 }

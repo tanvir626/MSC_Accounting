@@ -1,0 +1,126 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|c:\\users\\testw\\desktop\\account\\msc_accounting\\repository\\account_repository_in.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|solutionrelative:repository\\account_repository_in.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|c:\\users\\testw\\desktop\\account\\msc_accounting\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|c:\\users\\testw\\desktop\\account\\msc_accounting\\models\\accaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|solutionrelative:models\\accaccount.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|c:\\users\\testw\\desktop\\account\\msc_accounting\\views\\home\\accountlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|solutionrelative:views\\home\\accountlist.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|c:\\users\\testw\\desktop\\account\\msc_accounting\\service\\saccounts_crud_out.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|solutionrelative:service\\saccounts_crud_out.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|c:\\users\\testw\\desktop\\account\\msc_accounting\\models\\accountsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{559FFABA-9800-4778-891E-E40D8C8AC2CE}|Accounting_Module.csproj|solutionrelative:models\\accountsdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0174dea2-fdbe-4ef1-8f99-c0beae78880f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Account_Repository_In.cs",
+              "DocumentMoniker": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Repository\\Account_Repository_In.cs",
+              "RelativeDocumentMoniker": "Repository\\Account_Repository_In.cs",
+              "ToolTip": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Repository\\Account_Repository_In.cs",
+              "RelativeToolTip": "Repository\\Account_Repository_In.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T06:27:18.795Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SAccounts_Crud_Out.cs",
+              "DocumentMoniker": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Service\\SAccounts_Crud_Out.cs",
+              "RelativeDocumentMoniker": "Service\\SAccounts_Crud_Out.cs",
+              "ToolTip": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Service\\SAccounts_Crud_Out.cs",
+              "RelativeToolTip": "Service\\SAccounts_Crud_Out.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAWwBIAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T06:20:34.221Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAqwCcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T06:01:32.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AccountList.cshtml",
+              "DocumentMoniker": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Views\\Home\\AccountList.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\AccountList.cshtml",
+              "ToolTip": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Views\\Home\\AccountList.cshtml",
+              "RelativeToolTip": "Views\\Home\\AccountList.cshtml",
+              "ViewState": "AgIAAKYBAAAAAAAAAAAmwLsBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-07-23T06:12:10.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AccAccount.cs",
+              "DocumentMoniker": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Models\\AccAccount.cs",
+              "RelativeDocumentMoniker": "Models\\AccAccount.cs",
+              "ToolTip": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Models\\AccAccount.cs",
+              "RelativeToolTip": "Models\\AccAccount.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T06:19:31.438Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AccountsDBContext.cs",
+              "DocumentMoniker": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Models\\AccountsDBContext.cs",
+              "RelativeDocumentMoniker": "Models\\AccountsDBContext.cs",
+              "ToolTip": "C:\\Users\\testw\\Desktop\\Account\\MSC_Accounting\\Models\\AccountsDBContext.cs",
+              "RelativeToolTip": "Models\\AccountsDBContext.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAmwDsAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T06:20:44.548Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
